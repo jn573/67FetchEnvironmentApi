@@ -34,7 +34,12 @@ function getAPI() {
 }
 
 function getAPI() {
-    fetch('https://api.github.com/users/jn573')
+    let api = null
+    let gitHubUser = document.getElementById("gituser").value
+    if (gitHubUser === '') {api = 'https://api.github.com/users/jn573' }
+    else { api = `https://api.github.com/users/${gitHubUser}`}
+    console.log(api)
+    fetch(api)
         .then(res => res.json())
         // .then(handleErrors)
         .then(data => {
