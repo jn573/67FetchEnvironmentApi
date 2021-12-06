@@ -14,57 +14,38 @@ function getText() {
 
 function getJSON() {
     fetch('env.json')
-        .then(function (res) {
-            return res.json()
-        })
-        .then(function (data) {
-            // let json = data
-            // const json = JSON.stringify(data)
+        .then(res => res.json())
+        .then(data => {
             console.log(data)
-            // console.log(json)
             let output = ''
-            // output = data.env
             data.forEach(function (environment) {
                 output += `<li>${environment.env}: ${environment.conn}</li>`
             })
             document.getElementById('output').innerHTML = output
         })
-        .catch(function (err) {
-            document.getElementById('output').innerHTML = err
-        })
+        .catch(err =>  document.getElementById('output').innerHTML = err)
 }
 
 function getAPI() {
     fetch('env.json')
-        .then(function (res) {
-            return res.text()
-        })
-        .then(function (data) {
-            document.getElementById('output').innerHTML = data
-        })
-        .catch(function (err) {
-            document.getElementById('output').innerHTML = err
-        })
+        .then(err => res.text())
+        .then(data => document.getElementById('output').innerHTML = data)
+        .catch(err => document.getElementById('output').innerHTML = err)
 }
 
 function getAPI() {
     fetch('https://api.github.com/users/jn573')
-        .then(function (res) {
-            return res.json()
-        })
+        .then(res => res.json())
         // .then(handleErrors)
-        .then(function (data) {
+        .then(data => {
             console.log(data)
             let output = ''
             output = `Login: ${data.login}<br/>`
-            // output += `id: ${data.id}<br/>`
             output += `URL: ${data.url}<br/>`
             output += `Location: ${data.location}<br/>`
             document.getElementById('output').innerHTML = output
         })
-        .catch(function (err) {
-            document.getElementById('output').innerHTML = err
-        })
+        .catch(err => document.getElementById('output').innerHTML = err)
 }
 
 function handleErrors(res){
