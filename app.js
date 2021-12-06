@@ -56,6 +56,7 @@ function getAPI() {
         .then(function (res) {
             return res.json()
         })
+        // .then(handleErrors)
         .then(function (data) {
             console.log(data)
             let output = ''
@@ -68,4 +69,9 @@ function getAPI() {
         .catch(function (err) {
             document.getElementById('output').innerHTML = err
         })
+}
+
+function handleErrors(res){
+    if (!res.ok) throw new Error(res.error)
+    return res
 }
